@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halloween Page</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: 'Arial', sans-serif;
+        /* Fialový gradient pozadí */
+        background: linear-gradient(135deg, #4b0082, #800080, #9932CC, #8A2BE2);
+        background-size: 400% 400%;
+        animation: gradientBG 20s ease infinite;
+        color: white;
+        overflow: hidden;
+        position: relative;
+    }
+
+    @keyframes gradientBG {
+        0% {background-position: 0% 50%;}
+        50% {background-position: 100% 50%;}
+        100% {background-position: 0% 50%;}
+    }
+
+    #password-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        background-color: rgba(0,0,0,0.6);
+        padding: 20px 30px;
+        border-radius: 15px;
+        z-index: 10;
+    }
+
+    input[type="password"] {
+        padding: 10px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        outline: none;
+        width: 250px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background-color: orange;
+        color: black;
+        cursor: pointer;
+    }
+
+    #message {
+        display: none;
+        max-width: 600px;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        z-index: 10;
+        margin: 0 auto;
+    }
+
+    #message img {
+        width: 250px;
+        height: auto;
+        margin: 20px 0;
+        border-radius: 15px;
+        position: relative;
+        z-index: 1;
+    }
+
+    #message p:first-child {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    #message p:last-child {
+        margin-top: 100px;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    .floating {
+        position: absolute;
+        width: 80px;
+        height: auto;
+        pointer-events: none;
+        user-select: none;
+        animation: float 6s ease-in-out infinite alternate;
+    }
+
+    .floating.bat { width: 60px; }
+    .floating.witch { width: 100px; }
+    .floating.pumpkin { width: 70px; animation-duration: 4s; }
+
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); opacity:0.8; }
+        50% { transform: translateY(-30px) rotate(15deg); opacity:1; }
+        100% { transform: translateY(0) rotate(0deg); opacity:0.8; }
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        font-size: 24px;
+        animation: floatHeart 4s linear infinite;
+    }
+
+    @keyframes floatHeart {
+        0% { transform: translateY(0) scale(1); opacity:1; }
+        100% { transform: translateY(-300px) scale(1.5); opacity:0; }
+    }
+
+    /* Mlha - CSS gradient a průhledné bílé vrstvy */
+    .fog {
+        position: absolute;
+        top: -20%;
+        left: -20%;
+        width: 140%;
+        height: 140%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 70%);
+        animation: drift 60s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    @keyframes drift {
+        0% { transform: translate(0,0); }
+        50% { transform: translate(20%, 10%); }
+        100% { transform: translate(0,0); }
+    }
+
+    /* Blikající oči */
+    .eye {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: yellow;
+        border-radius: 50%;
+        opacity: 0;
+        animation: blink 2s infinite;
+        z-index: 3;
+    }
+
+    @keyframes blink {
+        0%, 20%, 40%, 60%, 80%, 100% { opacity: 0; }
+        10%, 30%, 50%, 70%, 90% { opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<div id="password-container">
+    <input type="password" id="password" placeholder="Zadej heslo">
+    <br>
+    <button id="submitBtn">Potvrdit</button>
+</div>
+
+<div id="message">
+    <p>The costume wasn't found but the way to your heart was!</p>
+    <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.jpg" alt="Roztomilé štěně">
+    <p>ÚSMĚV VOLE!!</p>
+</div>
+
+<div class="fog"></div>
+
+<!-- Dýně -->
+<img src="https://pngimg.com/uploads/pumpkin/pumpkin_PNG91.png" class="floating pumpkin" style="top:5%; left:10%;">
+<img src="https://pngimg.com/uploads/pumpkin/pumpkin_PNG91.png" class="floating pumpkin" style="top:20%; left:70%;">
+<img src="https://pngimg.com/uploads/pumpkin/pumpkin_PNG91.png" class="floating pumpkin" style="top:50%; left:40%;">
+<img src="https://pngimg.com/uploads/pumpkin/pumpkin_PNG91.png" class="floating pumpkin" style="top:65%; left:80%;">
+
+<!-- Netopýři a čarodějnice -->
+<img src="https://pngimg.com/uploads/bat/bat_PNG12.png" class="floating bat" style="top:50%; left:10%;">
+<img src="https://pngimg.com/uploads/bat/bat_PNG12.png" class="floating bat" style="top:20%; left:60%;">
+<img src="https://pngimg.com/uploads/witch/witch_PNG63.png" class="floating witch" style="top:70%; left:50%;">
+
+<script>
+    const passwordInput = document.getElementById('password');
+    const submitBtn = document.getElementById('submitBtn');
+    const passwordContainer = document.getElementById('password-container');
+    const message = document.getElementById('message');
+    const correctPassword = "SPOOKYSOCPED25";
+
+    function checkPassword() {
+        if(passwordInput.value === correctPassword) {
+            passwordContainer.style.display = 'none';
+            message.style.display = 'flex';
+            spawnHearts();
+        } else {
+            alert("Špatné heslo! Zkus to znovu.");
+            passwordInput.value = "";
+        }
+    }
+
+    submitBtn.addEventListener('click', checkPassword);
+    passwordInput.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') checkPassword();
+    });
+
+    function spawnHearts() {
+        for(let i=0; i<15; i++){
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = '❤️';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (3 + Math.random()*2) + 's';
+            heart.style.fontSize = (20 + Math.random()*20) + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+        setTimeout(spawnHearts, 1000);
+    }
+
+    // Blikající oči
+    for(let i=0;i<12;i++){
+        const eye = document.createElement('div');
+        eye.classList.add('eye');
+        eye.style.top = Math.random() * window.innerHeight + 'px';
+        eye.style.left = Math.random() * window.innerWidth + 'px';
+        eye.style.animationDelay = Math.random()*2 + 's';
+        document.body.appendChild(eye);
+    }
+</script>
+
+</body>
+</html>
